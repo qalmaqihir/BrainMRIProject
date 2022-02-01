@@ -6,27 +6,44 @@ models in literature.
 > This repository has jupyter notebooks - providing detail notes on the topics - as well as MATLAB codes for implementing Image Processing algorithms to evaluate the best ones for the actual model.
 
 
-### Contents 
-1. Image Processing (Jupyter notebooks)
+## Contents 
+### 1. Image Processing (Jupyter notebooks)
     - Basic Conversions
     - 
     - 
-2. MATLAB Code
+### 2. MATLAB Code
     - 
     -
     -
     -
   
-3. Models
+### 3. Models
     -
     -
     -
     -
-  
-4. Performance Evaluation
-5. Dataset
-6. 
-7. 
+    
+### 4. Performance Evaluation
+    -
+    -
+    -
+    -
+    
+### 5. Dataset
+    -
+    -
+    -
+    -
+### 6. 
+    -
+    -
+    -
+    -
+### 7. 
+    -
+    -
+    -
+    -
 
 
 ## Installation
