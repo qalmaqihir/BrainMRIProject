@@ -8,20 +8,20 @@ models in literature.
 
 ### Contents 
 1. Image Processing (Jupyter notebooks)
-  - Basic Conversions
-  - 
-  - 
+    - Basic Conversions
+    - 
+    - 
 2. MATLAB Code
-  - 
-  -
-  -
-  -
+    - 
+    -
+    -
+    -
   
 3. Models
-  -
-  -
-  -
-  -
+    -
+    -
+    -
+    -
   
 4. Performance Evaluation
 5. Dataset
@@ -37,7 +37,6 @@ OS X & Linux:
 git clone https://github.com/qalmaqihir/BrainMRIProject.git
 ```
 
-
 ## Usage example
 Each Jupyter notebook contains sufficeint information about the topics covered. While the MATLAB code has comments to guide the reader about the processes.
 
@@ -48,12 +47,10 @@ _For more about each topic and the model, please refer to the [Wiki][wiki]._
 -
 -
 
-
 ## Release History
 Each commit has its own history...
 
 ## Meta
-
 Jawad Haider – [@JawadHa49605912](https://twitter.com/JawadHa49605912?t=LImgqrvKUy48gqaaeKooBA&s=09) – jawad.haider_2022@ucentralasia.org
 
 Distributed under the XYZ license. See ``LICENSE`` for more information.
