@@ -58,7 +58,7 @@ Jawad Haider – [@JawadHa49605912](https://twitter.com/JawadHa49605912?t=LImgqr
 
 Distributed under the XYZ license. See ``LICENSE`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/qalmaqihir)
+[check here](https://github.com/qalmaqihir)
 
 ## Contributing
 
