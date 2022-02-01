@@ -70,13 +70,11 @@ Each commit has its own history...
 ## Meta
 Jawad Haider – [@JawadHa49605912](https://twitter.com/JawadHa49605912?t=LImgqrvKUy48gqaaeKooBA&s=09) – jawad.haider_2022@ucentralasia.org
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[check here](https://github.com/qalmaqihir)
+_Distributed under the MIT license. See ``LICENSE`` for more information or [check here][LICENSE]._
 
 ## Contributing
 
-1. Fork it (<https://github.com/qalmaqihir/BrainMRIProject.git/fork>)
+1. Fork it (<https://github.com/qalmaqihir/BrainMRIProject/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
@@ -84,3 +82,4 @@ Distributed under the XYZ license. See ``LICENSE`` for more information.
 
 <!-- Markdown link & img dfn's -->
 [wiki]: https://github.com/qalmaqihir/BrainMRIProject/wiki
+[LICENSE]: https://github.com/qalmaqihir/BrainMRIProject/blob/main/LICENSE
