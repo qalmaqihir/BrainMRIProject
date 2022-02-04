@@ -8,8 +8,8 @@ models in literature.
 
 ## Contents 
 ### 1. Image Processing (Jupyter notebooks)
-    - Basic Conversions
-    - 
+    - Basic Conversions, Reading and writing to images [chpt1-3]
+    - Image Filters and Image Enchancement (transformations) [chpt4-5] 
     - 
 ### 2. MATLAB Code
     - 
