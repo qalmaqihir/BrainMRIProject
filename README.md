@@ -12,8 +12,8 @@ models in literature.
     - Image Filters and Image Enchancement (transformations) [chpt4-5] 
     - 
 ### 2. MATLAB Code
-    - 
-    -
+    - Basic Image handling, Filters and Feature Extraction
+    - Medain, Skewness, Standard Deviation, Kurtosis, Entropy
     -
     -
   
