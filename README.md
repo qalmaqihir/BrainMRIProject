@@ -10,39 +10,25 @@ models in literature.
 ### 1. Image Processing (Jupyter notebooks)
     - Basic Conversions, Reading and writing to images [chpt1-3]
     - Image Filters and Image Enchancement (transformations) [chpt4-5] 
-    - 
 ### 2. MATLAB Code
     - Basic Image handling, Filters and Feature Extraction
     - Medain, Skewness, Standard Deviation, Kurtosis, Entropy
-    -
-    -
-  
 ### 3. Models
-    -
+    - Decision Tree 
     -
     -
     -
     
 ### 4. Performance Evaluation
-    -
-    -
-    -
+    - Confusion matrix
+    - F1-score, Accuracy, Precision and Recall were calculated.
+    - Performance is evaluated on output from majority vote and the y_test
     -
     
 ### 5. Dataset
-    -
-    -
-    -
-    -
-### 6. 
-    -
-    -
-    -
-    -
-### 7. 
-    -
-    -
-    -
+    - The Dataset is three files (red, green and blue) in excel as well as csv formats. And a Labels file with the classes.
+    - For the model, we gave all three files to three classifiers alone with the labels file
+    - All the algorithms were give the same data files
     -
 
 
