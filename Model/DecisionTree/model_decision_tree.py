@@ -29,22 +29,31 @@ X_test = sc.transform(X_test)
 
 # Classifier and Training of the model
 from sklearn.tree import DecisionTreeClassifier
-classifier=DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifier.fit(X_train,y_train)
+classifierR=DecisionTreeClassifier(criterion='entropy', random_state=0)
+classifierR.fit(X_train,y_train)
+# prediction of model on training data
+#y_predR_training = classifier.predict(X_train)
 
 # Prediction of the model on test data
-y_predR = classifier.predict(X_test)
-print(len(y_predR))
-print(y_predR)
+y_predR_testing = classifierR.predict(X_test)
+print("Testing Red predictions")
+print(len(y_predR_testing))
+print(y_predR_testing)
+
+#Prediction on training data
+y_predR_training = classifierR.predict(X_train)
+print("Training Prediction")
+print(len(y_predR_training))
+print(y_predR_training)
 
 #################################################################################
 df = pd.read_excel("GreenChannel.xlsx")
 df.to_csv("Green_data.csv")
 
 # Importing the Green dataset
-red_data_features = pd.read_csv('Green_data.csv')
+green_data_features = pd.read_csv('Green_data.csv')
 labels_file = pd.read_csv('Labels1.csv')
-X = red_data_features.iloc[:, 0:9].values
+X = green_data_features.iloc[:, 0:9].values
 y = labels_file.iloc[:, 0].values
 
 # print(len(X))
@@ -61,22 +70,28 @@ X_test = sc.transform(X_test)
 
 # Classifier and Training of the model
 from sklearn.tree import DecisionTreeClassifier
-classifier=DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifier.fit(X_train,y_train)
+classifierG=DecisionTreeClassifier(criterion='entropy', random_state=0)
+classifierG.fit(X_train,y_train)
 
 # Prediction of the model on test data
-y_predG = classifier.predict(X_test)
-print(len(y_predG))
-print(y_predG)
+y_predG_testing = classifierG.predict(X_test)
+print("Testing Prediction Green")
+print(len(y_predG_testing))
+print(y_predG_testing)
 
+#Prediction on training data
+y_predG_training = classifierG.predict(X_train)
+print("Training Prediction Green")
+print(len(y_predG_training))
+print(y_predG_training)
 #########################################################################
 df = pd.read_excel("BlueChannel.xlsx")
 df.to_csv("Blue_data.csv")
 
 # Importing the  Blue dataset
-red_data_features = pd.read_csv('Blue_data.csv')
+blue_data_features = pd.read_csv('Blue_data.csv')
 labels_file = pd.read_csv('Labels1.csv')
-X = red_data_features.iloc[:, 0:9].values
+X = blue_data_features.iloc[:, 0:9].values
 y = labels_file.iloc[:, 0].values
 
 # print(len(X))
@@ -93,77 +108,112 @@ X_test = sc.transform(X_test)
 
 # Classifier and Training of the model
 from sklearn.tree import DecisionTreeClassifier
-classifier=DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifier.fit(X_train,y_train)
+classifierB=DecisionTreeClassifier(criterion='entropy', random_state=0)
+classifierB.fit(X_train,y_train)
 
 # Prediction of the model on test data
-y_predB = classifier.predict(X_test)
-print(len(y_predB))
-print(y_predB)
+y_predB_testing = classifierB.predict(X_test)
+print("Testing Prediction Blue")
+print(len(y_predB_testing))
+print(y_predB_testing)
+
+#Prediction on training data
+y_predB_training = classifierB.predict(X_train)
+print("Training Prediction Blue")
+print(len(y_predB_training))
+print(y_predB_training)
 
 
-majority_votes=np.zeros(y_predR.shape,dtype=int)
-print(len(majority_votes))
+# Majority voting for Testing predictions
+majority_votes_testing=np.zeros(y_predR_testing.shape,dtype=int)
+print(len(majority_votes_testing))
 
-for i in range(len(y_predR)):
-    if y_predR[i]==y_predG[i]:
-        majority_votes[i]=y_predR[i]
-    elif y_predR[i]==y_predB[i]:
-        majority_votes[i]=y_predR[i]
+for i in range(len(y_predR_testing)):
+    if y_predR_testing[i]==y_predG_testing[i]:
+        majority_votes_testing[i]=y_predR_testing[i]
+    elif y_predR_testing[i]==y_predB_testing[i]:
+        majority_votes_testing[i]=y_predR_testing[i]
     else:
-        majority_votes[i]=y_predG[i]
+        majority_votes_testing[i]=y_predG_testing[i]
 
-print(f"After majority voting the final predictions: \n{majority_votes}")
+print(f"After majority voting the final predictions for testing: \n{majority_votes_testing}")
 
+# Majority voting for Testing predictions
+majority_votes_training=np.zeros(y_predR_training.shape,dtype=int)
+print(len(majority_votes_training))
 
-# Performance evaluation of the model
+for i in range(len(y_predR_training)):
+    if y_predR_training[i]==y_predG_training[i]:
+        majority_votes_training[i]=y_predR_training[i]
+    elif y_predR_training[i]==y_predB_training[i]:
+        majority_votes_training[i]=y_predR_training[i]
+    else:
+        majority_votes_training[i]=y_predG_training[i]
+
+print(f"After majority voting the final predictions for training: \n{majority_votes_training}")
+
+# Performance evaluation of the model for testing prediction
 from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test,majority_votes)
-
 from sklearn.metrics import accuracy_score
-accuracy_score(y_test,majority_votes)
+accuracy_score(y_test,majority_votes_testing)
 
 # Making the Confusion Matrix
 import seaborn as sns
-cm = confusion_matrix(majority_votes, y_test)
+cm = confusion_matrix(majority_votes_testing, y_test)
 sns.heatmap(cm,annot=True)
-pyplot.savefig('DT.png')
+pyplot.savefig('DT_testing.png')
 print(cm)
 
+
 from sklearn.metrics import accuracy_score
-accuracy_score(y_test,majority_votes)
+accuracy_score(y_test,majority_votes_testing)
 
 from sklearn.metrics import classification_report
-print(classification_report(y_test,majority_votes))
+print(classification_report(y_test,majority_votes_testing))
 
-# Saving the predictions to file
-# Create Red File
-outWorkbook = xlsxwriter.Workbook("Models_Predictions.xlsx")
-outSheet = outWorkbook.add_worksheet()
-# Write Headers
-outSheet.write("A1", "DT Algorithm")
-outSheet.write("A2", "Red")
-outSheet.write("B2", "Green")
-outSheet.write("C2", "Blue")
-outSheet.write("D2", "Majority Voting")
-outWorkbook.close()
+#Model evaluation
+from sklearn import metrics
+precision=metrics.precision_score(y_test,majority_votes_testing)
+accuracy=metrics.accuracy_score(y_test, majority_votes_testing)
+recall=metrics.recall_score(y_test,majority_votes_testing)
+print("Testing Accuracy: ", metrics.accuracy_score(y_test, majority_votes_testing))
+print("Testing Precision: ", metrics.precision_score(y_test,majority_votes_testing))
+print("Testing Recall: ",metrics.recall_score(y_test,majority_votes_testing))
 
-# r=3
+# Performance evaluation of the model for training prediction
+# Making the Confusion Matrix
+cm_training = confusion_matrix(majority_votes_training, y_train)
+sns.heatmap(cm_training,annot=True)
+pyplot.savefig('DT_training.png')
+print(cm_training)
+
+accuracy_score(y_train,majority_votes_training)
+
+print(classification_report(y_train,majority_votes_training))
+
+#Model evaluation
+precision=metrics.precision_score(y_train,majority_votes_training)
+accuracy=metrics.accuracy_score(y_train, majority_votes_training)
+recall=metrics.recall_score(y_train,majority_votes_training)
+print("Training Accuracy: ", metrics.accuracy_score(y_train, majority_votes_training))
+print("Training Precision: ", metrics.precision_score(y_train,majority_votes_training))
+print("Training Recall: ",metrics.recall_score(y_train,majority_votes_training))
+
+# values=[accuracy,precision,recall]
+# # Saving the predictions to file
+# # Create Red File
+# outWorkbook = xlsxwriter.Workbook("Models_Predictions.xlsx")
+# outSheet = outWorkbook.add_worksheet()
+# # Write Headers
+# outSheet.write("B1","Decision Tree")
+# outSheet.write("A2","Accuracy")
+# outSheet.write("A3","Precision")
+# outSheet.write("A4","Recall")
+# r=1
 # c=1
-# for i in range(len(y_predR)):
-#     y_r=y_predR[i]
-#     y_g=y_predG[i]
-#     y_b=y_predB[i]
-#     m_v=majority_votes[i]
-#     predics=[y_r,y_g,y_b,m_v]
+# for item in values:
+#     outSheet.write(r,c,item)
+#     r+=1
 #
-#     # Write data to file
-#     outWorkbook = openpyxl.load_workbook("Models_Predictions.xlsx")
-#     outSheet = outWorkbook.active
-#     outSheet.append(predics)
-#     # outSheet.cell(r,c+1,y_r)
-#     # outSheet.cell(r, c+2, y_g)
-#     # outSheet.cell(r, c+3, y_b)
-#     # outSheet.cell(r, c+4,majority_votes)
-#     # r+=1
 #
+# outWorkbook.close()
