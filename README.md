@@ -18,8 +18,8 @@ models in literature.
     - Medain, Skewness, Standard Deviation, Kurtosis, Entropy
 ### 3. Models
     - Decision Tree 
-    -
-    -
+    - Support Vector Machine
+    - Random Forest
     -
     
 ### 4. Performance Evaluation
