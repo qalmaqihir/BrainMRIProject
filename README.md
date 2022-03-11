@@ -31,7 +31,8 @@ models in literature.
             - Red, Green, Blue channel saved model
             - Confusion matrix for testing and Training
             - model 
-    -
+    - k-NN
+    - Naive Bayes
     
 ### 4. Performance Evaluation
     - Confusion matrix
