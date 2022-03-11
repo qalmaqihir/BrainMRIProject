@@ -17,9 +17,20 @@ models in literature.
     - Basic Image handling, Filters and Feature Extraction
     - Medain, Skewness, Standard Deviation, Kurtosis, Entropy
 ### 3. Models
+    - Artificial Neurla Network
+            - Red, Green, Blue channel saved model
+            - Confusion matrix for testing and Training
+            - model 
     - Decision Tree 
+            - Red, Green, Blue channel saved model
+            - Confusion matrix for testing and Training
+            - model 
+    
     - Support Vector Machine
     - Random Forest
+            - Red, Green, Blue channel saved model
+            - Confusion matrix for testing and Training
+            - model 
     -
     
 ### 4. Performance Evaluation
