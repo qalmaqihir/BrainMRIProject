@@ -5,6 +5,10 @@ import pandas as pd
 # Loading the data
 import xlsxwriter
 from matplotlib import pyplot
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+
 
 df = pd.read_excel("RedChannel.xlsx")
 df.to_csv("Red_data.csv")
@@ -12,39 +16,33 @@ df.to_csv("Red_data.csv")
 # Importing the Red dataset
 red_data_features = pd.read_csv('Red_data.csv')
 labels_file = pd.read_csv('Labels1.csv')
-X = red_data_features.iloc[:, 0:9].values
-y = labels_file.iloc[:, 0].values
+XR = red_data_features.iloc[:, 0:9].values
+yR = labels_file.iloc[:, 0].values
 
 # print(len(X))
 # print(len(y))
 # Training and Testing Data (divide the data into two part)
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test =train_test_split(X,y,train_size=0.75, random_state=0)
+
+X_trainR, X_testR, y_trainR, y_testR =train_test_split(XR,yR,train_size=0.75, random_state=0)
 
 # Normalize the values
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
+X_trainR = sc.fit_transform(X_trainR)
+X_testR = sc.transform(X_testR)
 
 # Classifier and Training of the model
-from sklearn.tree import DecisionTreeClassifier
 classifierR=DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifierR.fit(X_train,y_train)
+classifierR.fit(X_trainR,y_trainR)
 # prediction of model on training data
-#y_predR_training = classifier.predict(X_train)
+y_predR_training = classifierR.predict(X_trainR)
 
 # Prediction of the model on test data
-y_predR_testing = classifierR.predict(X_test)
-print("Testing Red predictions")
-print(len(y_predR_testing))
-print(y_predR_testing)
+y_predR_testing = classifierR.predict(X_testR)
+# print("Testing Red predictions")
+# print(len(y_predR_testing))
+# print(y_predR_testing)
 
-#Prediction on training data
-y_predR_training = classifierR.predict(X_train)
-print("Training Prediction")
-print(len(y_predR_training))
-print(y_predR_training)
 
 #################################################################################
 df = pd.read_excel("GreenChannel.xlsx")
@@ -53,37 +51,43 @@ df.to_csv("Green_data.csv")
 # Importing the Green dataset
 green_data_features = pd.read_csv('Green_data.csv')
 labels_file = pd.read_csv('Labels1.csv')
-X = green_data_features.iloc[:, 0:9].values
-y = labels_file.iloc[:, 0].values
+XG = green_data_features.iloc[:, 0:9].values
+yG = labels_file.iloc[:, 0].values
 
 # print(len(X))
 # print(len(y))
 # Training and Testing Data (divide the data into two part)
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test =train_test_split(X,y,train_size=0.75, random_state=0)
+X_trainG, X_testG, y_trainG, y_testG =train_test_split(XG,yG,train_size=0.75, random_state=0)
 
 # Normalize the values
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
+X_trainG = sc.fit_transform(X_trainG)
+X_testG = sc.transform(X_testG)
 
 # Classifier and Training of the model
 from sklearn.tree import DecisionTreeClassifier
 classifierG=DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifierG.fit(X_train,y_train)
+classifierG.fit(X_trainG,y_trainG)
 
 # Prediction of the model on test data
-y_predG_testing = classifierG.predict(X_test)
-print("Testing Prediction Green")
-print(len(y_predG_testing))
-print(y_predG_testing)
+y_predG_testing = classifierG.predict(X_testG)
+# print("Testing Prediction Green")
+# print(len(y_predG_testing))
+# print(y_predG_testing)
+#
+
+
 
 #Prediction on training data
-y_predG_training = classifierG.predict(X_train)
-print("Training Prediction Green")
-print(len(y_predG_training))
-print(y_predG_training)
+y_predG_training = classifierG.predict(X_trainG)
+# print("Training Prediction Green")
+# print(len(y_predG_training))
+# print(y_predG_training)
+
+
+
 #########################################################################
 df = pd.read_excel("BlueChannel.xlsx")
 df.to_csv("Blue_data.csv")
@@ -91,40 +95,69 @@ df.to_csv("Blue_data.csv")
 # Importing the  Blue dataset
 blue_data_features = pd.read_csv('Blue_data.csv')
 labels_file = pd.read_csv('Labels1.csv')
-X = blue_data_features.iloc[:, 0:9].values
-y = labels_file.iloc[:, 0].values
+XB = blue_data_features.iloc[:, 0:9].values
+yB = labels_file.iloc[:, 0].values
 
 # print(len(X))
 # print(len(y))
 # Training and Testing Data (divide the data into two part)
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test =train_test_split(X,y,train_size=0.75, random_state=0)
+X_trainB, X_testB, y_trainB, y_testB =train_test_split(XB,yB,train_size=0.75, random_state=0)
 
 # Normalize the values
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
+X_trainB = sc.fit_transform(X_trainB)
+X_testB = sc.transform(X_testB)
 
 # Classifier and Training of the model
 from sklearn.tree import DecisionTreeClassifier
 classifierB=DecisionTreeClassifier(criterion='entropy', random_state=0)
-classifierB.fit(X_train,y_train)
+classifierB.fit(X_trainB,y_trainB)
 
 # Prediction of the model on test data
-y_predB_testing = classifierB.predict(X_test)
-print("Testing Prediction Blue")
-print(len(y_predB_testing))
-print(y_predB_testing)
+y_predB_testing = classifierB.predict(X_testB)
+# print("Testing Prediction Blue")
+# print(len(y_predB_testing))
+# print(y_predB_testing)
 
 #Prediction on training data
-y_predB_training = classifierB.predict(X_train)
-print("Training Prediction Blue")
-print(len(y_predB_training))
-print(y_predB_training)
+y_predB_training = classifierB.predict(X_trainB)
+# print("Training Prediction Blue")
+# print(len(y_predB_training))
+# print(y_predB_training)
 
 
+# from sklearn import metrics
+#
+# print("#########################################################################\n Testing Accuracies")
+# print("Testing Blue Accuracy: ", metrics.accuracy_score(y_testB, y_predB_testing))
+# print("Testing Blue  Precision: ", metrics.precision_score(y_testB,y_predB_testing))
+# print("Testing Blue Recall: ",metrics.recall_score(y_testB,y_predB_testing))
+#
+# print("Testing Green Accuracy: ", metrics.accuracy_score(y_testG, y_predG_testing))
+# print("Testing Green  Precision: ", metrics.precision_score(y_testG,y_predG_testing))
+# print("Testing Green Recall: ",metrics.recall_score(y_testG,y_predG_testing))
+#
+# print("Testing Red Accuracy: ", metrics.accuracy_score(y_testR, y_predR_testing))
+# print("Testing Red Precision: ", metrics.precision_score(y_testR,y_predR_testing))
+# print("Testing Red  Recall: ",metrics.recall_score(y_testR,y_predR_testing))
+# print("#########################################################################\n Training Accuracies")
+# print("Training Green Accuracy: ", metrics.accuracy_score(y_trainG, y_predG_training))
+# print("Training Green Precision: ", metrics.precision_score(y_trainG,y_predG_training))
+# print("Training Green  Recall: ",metrics.recall_score(y_trainG,y_predG_training))
+#
+# print("Training Blue Accuracy: ", metrics.accuracy_score(y_trainB, y_predB_training))
+# print("Training Blue Precision: ", metrics.precision_score(y_trainB,y_predB_training))
+# print("Training Blue  Recall: ",metrics.recall_score(y_trainB,y_predB_training))
+#
+# print("Training Red Accuracy: ", metrics.accuracy_score(y_trainR, y_predR_training))
+# print("Training Red Precision: ", metrics.precision_score(y_trainR,y_predR_training))
+# print("Training Red  Recall: ",metrics.recall_score(y_trainR,y_predR_training))
+# print("####################################################################################")
 # Majority voting for Testing predictions
+
+
 majority_votes_testing=np.zeros(y_predR_testing.shape,dtype=int)
 print(len(majority_votes_testing))
 
@@ -155,49 +188,47 @@ print(f"After majority voting the final predictions for training: \n{majority_vo
 # Performance evaluation of the model for testing prediction
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-accuracy_score(y_test,majority_votes_testing)
+accuracy_score(y_testR,majority_votes_testing)
 
 # Making the Confusion Matrix
-import seaborn as sns
-cm = confusion_matrix(majority_votes_testing, y_test)
-sns.heatmap(cm,annot=True)
-pyplot.savefig('DT_testing.png')
-print(cm)
-
-
-from sklearn.metrics import accuracy_score
-accuracy_score(y_test,majority_votes_testing)
+# import seaborn as sns
+# cmtest = confusion_matrix(majority_votes_testing, y_testR)
+# sns.heatmap(cmtest,annot=True)
+# pyplot.savefig('DT_testing.png')
+# accuracy_score(y_testR,majority_votes_testing)
 
 from sklearn.metrics import classification_report
-print(classification_report(y_test,majority_votes_testing))
+print(classification_report(y_testR,majority_votes_testing))
 
 #Model evaluation
 from sklearn import metrics
-precision=metrics.precision_score(y_test,majority_votes_testing)
-accuracy=metrics.accuracy_score(y_test, majority_votes_testing)
-recall=metrics.recall_score(y_test,majority_votes_testing)
-print("Testing Accuracy: ", metrics.accuracy_score(y_test, majority_votes_testing))
-print("Testing Precision: ", metrics.precision_score(y_test,majority_votes_testing))
-print("Testing Recall: ",metrics.recall_score(y_test,majority_votes_testing))
+# precision=metrics.precision_score(y_testR,majority_votes_testing)
+# accuracy=metrics.accuracy_score(y_testR, majority_votes_testing)
+# recall=metrics.recall_score(y_testR,majority_votes_testing)
+print("Testing Accuracy: ", metrics.accuracy_score(y_testR, majority_votes_testing))
+print("Testing Precision: ", metrics.precision_score(y_testR,majority_votes_testing))
+print("Testing Recall: ",metrics.recall_score(y_testR,majority_votes_testing))
 
 # Performance evaluation of the model for training prediction
 # Making the Confusion Matrix
-cm_training = confusion_matrix(majority_votes_training, y_train)
-sns.heatmap(cm_training,annot=True)
+import seaborn as sns
+cmtrain = confusion_matrix(majority_votes_training, y_trainR)
+sns.heatmap(cmtrain,annot=True)
 pyplot.savefig('DT_training.png')
-print(cm_training)
 
-accuracy_score(y_train,majority_votes_training)
+accuracy_score(y_trainR,majority_votes_training)
 
-print(classification_report(y_train,majority_votes_training))
+print(classification_report(y_trainR,majority_votes_training))
 
 #Model evaluation
-precision=metrics.precision_score(y_train,majority_votes_training)
-accuracy=metrics.accuracy_score(y_train, majority_votes_training)
-recall=metrics.recall_score(y_train,majority_votes_training)
-print("Training Accuracy: ", metrics.accuracy_score(y_train, majority_votes_training))
-print("Training Precision: ", metrics.precision_score(y_train,majority_votes_training))
-print("Training Recall: ",metrics.recall_score(y_train,majority_votes_training))
+# precision=metrics.precision_score(y_trainR,majority_votes_training)
+# accuracy=metrics.accuracy_score(y_trainR, majority_votes_training)
+# recall=metrics.recall_score(y_trainR,majority_votes_training)
+print("Training Accuracy: ", metrics.accuracy_score(y_trainR, majority_votes_training))
+print("Training Precision: ", metrics.precision_score(y_trainR,majority_votes_training))
+print("Training Recall: ",metrics.recall_score(y_trainR,majority_votes_training))
+
+
 
 # values=[accuracy,precision,recall]
 # # Saving the predictions to file
@@ -217,3 +248,19 @@ print("Training Recall: ",metrics.recall_score(y_train,majority_votes_training))
 #
 #
 # outWorkbook.close()
+
+
+import pickle
+
+pkl_file_nameR="model_dtRed.pkl"
+with open(pkl_file_nameR,'wb') as fileR:
+    pickle.dump(classifierR, fileR)
+
+pkl_file_nameG="model_dtGreen.pkl"
+with open(pkl_file_nameG,'wb') as fileG:
+    pickle.dump(classifierG, fileG)
+
+pkl_file_nameB="model_dtBlue.pkl"
+with open(pkl_file_nameB,'wb') as fileB:
+    pickle.dump(classifierB, fileB)
+
