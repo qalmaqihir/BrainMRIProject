@@ -18,7 +18,7 @@ yR = labels_file.iloc[:, 0].values
 X_trainR, X_testR, y_trainR, y_testR =train_test_split(XR,yR,test_size=0.3, random_state=109)
 
 
-clfR=RandomForestClassifier(n_estimators=100,max_depth=10)
+clfR=RandomForestClassifier(n_estimators=100,max_depth=10,criterion='gini')
 clfR.fit(X_trainR,y_trainR)
 y_predR_testing = clfR.predict(X_testR)
 y_predR_training=clfR.predict(X_trainR)
@@ -51,7 +51,7 @@ yG = labels_file.iloc[:, 0].values
 X_trainG, X_testG, y_trainG, y_testG =train_test_split(XG,yG,test_size=0.3, random_state=109)
 
 
-clfG=RandomForestClassifier(n_estimators=100,max_depth=10)
+clfG=RandomForestClassifier(n_estimators=100,max_depth=10,criterion='gini')
 clfG.fit(X_trainG,y_trainG)
 y_predG_testing = clfG.predict(X_testG)
 y_predG_training=clfG.predict(X_trainG)
@@ -136,12 +136,12 @@ print(f"After majority voting the final predictions for testing: \n{majority_vot
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 
-# Making the Confusion Matrix
+# # Making the Confusion Matrix
 import seaborn as sns
-cm = confusion_matrix(majority_votes_testing, y_testR)
-sns.heatmap(cm,annot=True)
-pyplot.savefig('RandomForest_testing.png')
-print(cm)
+# cm = confusion_matrix(majority_votes_testing, y_testR)
+# sns.heatmap(cm,annot=True)
+# pyplot.savefig('RandomForest_testing.png')
+# print(cm)
 
 
 from sklearn.metrics import accuracy_score
@@ -158,7 +158,7 @@ recall=metrics.recall_score(y_testR,majority_votes_testing)
 print("Testing Accuracy: ", metrics.accuracy_score(y_testR, majority_votes_testing))
 print("Testing Precision: ", metrics.precision_score(y_testR,majority_votes_testing))
 print("Testing Recall: ",metrics.recall_score(y_testR,majority_votes_testing))
-
+#
 # Performance evaluation of the model for training prediction
 # Making the Confusion Matrix
 cm_training = confusion_matrix(majority_votes_training, y_trainR)
@@ -178,3 +178,18 @@ print("Training Accuracy: ", metrics.accuracy_score(y_trainR, majority_votes_tra
 print("Training Precision: ", metrics.precision_score(y_trainR,majority_votes_training))
 print("Training Recall: ",metrics.recall_score(y_trainR,majority_votes_training))
 
+
+# Saving the model for future use
+import pickle
+
+pkl_file_nameR="model_rnfRed.pkl"
+with open(pkl_file_nameR,'wb') as fileR:
+    pickle.dump(clfR, fileR)
+
+pkl_file_nameG="model_rnfGreen.pkl"
+with open(pkl_file_nameG,'wb') as fileG:
+    pickle.dump(clfG, fileG)
+
+pkl_file_nameB="model_rnfBlue.pkl"
+with open(pkl_file_nameB,'wb') as fileB:
+    pickle.dump(clfB, fileB)
