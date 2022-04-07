@@ -6,8 +6,8 @@ import pandas as pd
 ############################# Red Channel model ##############################################
 ##############################################################################################
 # Importing the Red dataset
-red_data_features = pd.read_csv('Red_data.csv')
-labels_file = pd.read_csv('Labels1.csv')
+red_data_features = pd.read_csv('../../Red_data.csv')
+labels_file = pd.read_csv('../../Labels1.csv')
 XR = red_data_features.iloc[:, 0:9].values
 yR = labels_file.iloc[:, 0].values
 
@@ -50,8 +50,8 @@ print("NB Red Testing Accuracy: ", metrics.accuracy_score(y_testR, y_predR_testi
 ############################ Green Channel model ############################################
 ##############################################################################################
 # Importing the Green dataset
-green_data_features = pd.read_csv('Green_data.csv')
-labels_file = pd.read_csv('Labels1.csv')
+green_data_features = pd.read_csv('../../Green_data.csv')
+labels_file = pd.read_csv('../../Labels1.csv')
 XG = green_data_features.iloc[:, 0:9].values
 yG = labels_file.iloc[:, 0].values
 
@@ -94,8 +94,8 @@ print("NB Green Testing Accuracy: ", metrics.accuracy_score(y_testG, y_predG_tes
 ############################ Blue Channel model ############################################
 ##############################################################################################
 # Importing the Blue dataset
-blue_data_features = pd.read_csv('Blue_data.csv')
-labels_file = pd.read_csv('Labels1.csv')
+blue_data_features = pd.read_csv('../../Blue_data.csv')
+labels_file = pd.read_csv('../../Labels1.csv')
 XB = blue_data_features.iloc[:, 0:9].values
 yB = labels_file.iloc[:, 0].values
 
@@ -200,3 +200,18 @@ print(classification_report(y_trainR,majority_votes_training))
 print("Training Accuracy: ", metrics.accuracy_score(y_trainR, majority_votes_training))
 print("Training Precision: ", metrics.precision_score(y_trainR,majority_votes_training))
 print("Training Recall: ",metrics.recall_score(y_trainR,majority_votes_training))
+
+# Saving the model for future use
+import pickle
+
+pkl_file_nameR="model_nbRed.pkl"
+with open(pkl_file_nameR,'wb') as fileR:
+    pickle.dump(clfR, fileR)
+
+pkl_file_nameG="model_nbGreen.pkl"
+with open(pkl_file_nameG,'wb') as fileG:
+    pickle.dump(clfG, fileG)
+
+pkl_file_nameB="model_nbBlue.pkl"
+with open(pkl_file_nameB,'wb') as fileB:
+    pickle.dump(clfB, fileB)
