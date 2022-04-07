@@ -27,12 +27,21 @@ models in literature.
             - model 
     
     - Support Vector Machine
+            - Red, Green, Blue channel saved model
+            - Confusion matrix for testing and Training
+            - model 
     - Random Forest
             - Red, Green, Blue channel saved model
             - Confusion matrix for testing and Training
             - model 
     - k-NN
+            - Red, Green, Blue channel saved model
+            - Confusion matrix for testing and Training
+            - model 
     - Naive Bayes
+            - Red, Green, Blue channel saved model
+            - Confusion matrix for testing and Training
+            - model 
     
 ### 4. Performance Evaluation
     - Confusion matrix
