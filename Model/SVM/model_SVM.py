@@ -11,8 +11,8 @@ from matplotlib import pyplot
 ############################# Red Channel model ##############################################
 ##############################################################################################
 # Importing the Red dataset
-red_data_features = pd.read_csv('Red_data.csv')
-labels_file = pd.read_csv('Labels1.csv')
+red_data_features = pd.read_csv('../../Red_data.csv')
+labels_file = pd.read_csv('../../Labels1.csv')
 XR = red_data_features.iloc[:, 0:9].values
 yR = labels_file.iloc[:, 0].values
 
@@ -56,8 +56,8 @@ print(y_predR_training)
 ############################ Green Channel model ############################################
 ##############################################################################################
 # Importing the Green dataset
-green_data_features = pd.read_csv('Green_data.csv')
-labels_file = pd.read_csv('Labels1.csv')
+green_data_features = pd.read_csv('../../Green_data.csv')
+labels_file = pd.read_csv('../../Labels1.csv')
 XG = green_data_features.iloc[:, 0:9].values
 yG = labels_file.iloc[:, 0].values
 
@@ -100,8 +100,8 @@ print(y_predG_training)
 ############################ Blue Channel model ############################################
 ##############################################################################################
 # Importing the Blue dataset
-blue_data_features = pd.read_csv('Blue_data.csv')
-labels_file = pd.read_csv('Labels1.csv')
+blue_data_features = pd.read_csv('../../Blue_data.csv')
+labels_file = pd.read_csv('../../Labels1.csv')
 XB = blue_data_features.iloc[:, 0:9].values
 yB = labels_file.iloc[:, 0].values
 
@@ -259,3 +259,17 @@ print("Training Recall: ",metrics.recall_score(y_trainR,majority_votes_training)
 
 # Link www.datacamp.com/community/tutorials/svm-classification-scikit-learn-python
 
+# Saving the model for future use
+import pickle
+
+pkl_file_nameR="model_svmRed.pkl"
+with open(pkl_file_nameR,'wb') as fileR:
+    pickle.dump(clfR, fileR)
+
+pkl_file_nameG="model_svmfGreen.pkl"
+with open(pkl_file_nameG,'wb') as fileG:
+    pickle.dump(clfG, fileG)
+
+pkl_file_nameB="model_svmBlue.pkl"
+with open(pkl_file_nameB,'wb') as fileB:
+    pickle.dump(clfB, fileB)
