@@ -69,10 +69,6 @@ Each Jupyter notebook contains sufficeint information about the topics covered. 
 
 _For more about each topic and the model, please refer to the [Wiki][wiki]._
 
-## Development setup
--
--
--
 
 ## Release History
 Each commit has its own history...
